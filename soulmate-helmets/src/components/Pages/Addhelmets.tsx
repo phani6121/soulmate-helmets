@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Addhelmets: React.FC = () => {
     const navigate = useNavigate();
+    const [base64Image, setBase64Image] = useState('');
+
     const [helmetsData, setHelmetsData] = useState<any>({
         name: '',
         price: '',
@@ -15,6 +17,9 @@ const Addhelmets: React.FC = () => {
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setHelmetsData({ ...helmetsData, [event.target.name]: event.target.value });
+        // event.target.name == "image" ? handleFileInputChange(event) : null
+        if (event.target.name === "image")
+            handleFileInputChange(event)
     };
     const isValidate = () => {
         let isProceed = true;
@@ -29,10 +34,10 @@ const Addhelmets: React.FC = () => {
             isProceed = false
             errorMessage += "Price "
         }
-        // if (image === null || image === "") {
-        //     isProceed = false
-        //     errorMessage += "Image "
-        // } 
+        if (image === null || image === "") {
+            isProceed = false
+            errorMessage += "Image "
+        }
         if (!isProceed) {
             toast.warning(errorMessage)
 
@@ -47,11 +52,24 @@ const Addhelmets: React.FC = () => {
         return isProceed;
     }
 
+    const handleFileInputChange = (e: any) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String: any = reader.result;
+            setBase64Image(base64String);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     const uploadHandler = async () => {
 
         if (isValidate()) {
             try {
-                const helmetsData = { id: name, name, price, image };
+                const helmetsData = { id: name, name, price, image: base64Image };
                 const response = await fetch('http://localhost:8000/helmets', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

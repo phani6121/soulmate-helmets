@@ -58,8 +58,11 @@ const Footer: React.FC = () => {
                             <Typography onClick={() => { navigate("/about") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "white", textDecoration: "none", cursor: "pointer" }}>
                                 About Us
                             </Typography>
-                            <Typography onClick={() => { navigate("/helmets") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "white", textDecoration: "none", cursor: "pointer" }}>
+                            <Typography onClick={() => { navigate("/contact") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "white", textDecoration: "none", cursor: "pointer" }}>
                                 Contact Us
+                            </Typography>
+                            <Typography onClick={() => { navigate("/warranty") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "white", textDecoration: "none", cursor: "pointer" }}>
+                                Warranty
                             </Typography>
                         </div>
 

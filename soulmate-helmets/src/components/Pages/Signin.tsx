@@ -235,6 +235,15 @@ const Signin: React.FC<SigninProps> = () => {
                         >
                             Sign Up
                         </Button>
+                        <Button
+                            onClick={() => { navigate("/login") }}
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            BACK TO LOGIN
+                        </Button>
                     </Box>
                 </Box>
             </Container>

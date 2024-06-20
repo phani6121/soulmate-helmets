@@ -19,7 +19,7 @@ const Accessories: React.FC = () => {
         if (username === "" || username === null) {
             navigate("/login");
         }
-    });
+    }, [navigate]);
 
     //Performing data fetching directly in the component body can cause issues, such as fetching data on every render or causing infinite loops.
 
@@ -47,11 +47,16 @@ const Accessories: React.FC = () => {
             const response = await fetch(`http://localhost:8000/accessories/${encodeURIComponent(id)}`, {
                 method: 'DELETE',
             });
-            // If the DELETE request is successful, the function creates a copy of the helmets array using the spread operator [...helmets] to avoid mutating state directly.It then uses the splice method to remove the helmet at the specified index from the copied array.Finally, it updates the state with the modified array using the setHelmets function.
             if (response.ok) {
                 const updatedAccessories = [...accessories];
                 updatedAccessories.splice(index, 1);
                 setAccessories(updatedAccessories);
+
+                // Adjust current page if it's now out of bounds
+                const numPages = Math.ceil(updatedAccessories.length / itemsPerPage);
+                if (currentPage > numPages) {
+                    setCurrentPage(numPages);
+                }
             } else {
                 throw new Error('Failed to delete Accessories');
             }
@@ -63,6 +68,7 @@ const Accessories: React.FC = () => {
     const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
         setCurrentPage(page);
     };
+
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -80,10 +86,10 @@ const Accessories: React.FC = () => {
             <Grid style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '21px', marginBottom: "40px", alignItems: "center" }}>
                 {currentItems.map((accessories, index) => (
                     <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card sx={{ maxWidth: 345 }}>
+                        <Card sx={{ Width: 345, height: 480 }}>
                             <CardMedia
                                 component="img"
-                                sx={{ height: 240 }}
+                                sx={{ height: 280 }}
                                 image={accessories.image}
                                 alt='accessoriesImage'
                             />

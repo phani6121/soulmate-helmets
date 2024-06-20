@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, Button, Typography, IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -13,13 +13,6 @@ const ForgotPassword: React.FC = () => {
 
 
 
-    useEffect(() => {
-        let username = sessionStorage.getItem("username");
-        if (username === "" || username === null) {
-            navigate("/login");
-        }
-    }
-    )
     const toggleShowNewPassword = () => {
         setShowNewPassword(!showNewPassword);
     };

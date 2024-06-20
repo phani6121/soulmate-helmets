@@ -30,6 +30,8 @@ const Navbar: React.FC = () => {
             setValue(3);
         } else if (path === '/warranty') {
             setValue(4);
+        } else if (path === '/contact') {
+            setValue(5);
         }
     }, [location.pathname]);
 
@@ -41,7 +43,7 @@ const Navbar: React.FC = () => {
             <Toolbar id="back-to-top-anchor">
                 <Typography color={"goldenrod"} variant='h6'>SOULMATE HELMETS</Typography>
                 <Tabs
-                    sx={{ marginRight: "auto", marginLeft: "100px" }}
+                    sx={{ marginRight: "auto", marginLeft: "10px" }}
                     indicatorColor="secondary"
                     textColor="inherit"
                     value={value}
@@ -52,6 +54,7 @@ const Navbar: React.FC = () => {
                     <Tab label="Accessories" component={Link} to="/accessories" />
                     <Tab label="About Us" component={Link} to="/about" />
                     <Tab label="Warranty" component={Link} to="/warranty" />
+                    <Tab label="Contact-Us" component={Link} to="/contact" />
                 </Tabs>
                 {isHelmetsPage && (
                     <Button onClick={() => { navigate("/addhelmets"); }} style={{ marginRight: "15px" }} variant="contained">

@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Addaccessories: React.FC = () => {
     const navigate = useNavigate();
+
+    const [base64Image, setBase64Image] = useState('');
     const [accessoriesData, setAccessoriesData] = useState<any>({
         name: '',
         price: '',
@@ -15,7 +17,11 @@ const Addaccessories: React.FC = () => {
 
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAccessoriesData({ ...accessoriesData, [event.target.name]: event.target.value });
+
+        if (event.target.name === "image")
+            handleFileInputChange(event)
     };
+
     const isValidate = () => {
         let isProceed = true;
 
@@ -29,10 +35,10 @@ const Addaccessories: React.FC = () => {
             isProceed = false
             errorMessage += "Price "
         }
-        // if (image === null || image === "") {
-        //     isProceed = false
-        //     errorMessage += "Image "
-        // } 
+        if (image === null || image === "") {
+            isProceed = false
+            errorMessage += "Image "
+        }
         if (!isProceed) {
             toast.warning(errorMessage)
 
@@ -47,11 +53,24 @@ const Addaccessories: React.FC = () => {
         return isProceed;
     }
 
+    const handleFileInputChange = (e: any) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String: any = reader.result;
+            setBase64Image(base64String);
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    };
+
     const uploadHandler = async () => {
 
         if (isValidate()) {
             try {
-                const accessoriesData = { id: name, name, price, image };
+                const accessoriesData = { id: name, name, price, image: base64Image };
                 const response = await fetch('http://localhost:8000/accessories', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

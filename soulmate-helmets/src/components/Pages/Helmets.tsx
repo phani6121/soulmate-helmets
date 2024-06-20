@@ -49,7 +49,13 @@ const Helmets: React.FC = () => {
                 const updatedHelmets = [...helmets];
                 updatedHelmets.splice(index, 1);
                 setHelmets(updatedHelmets);
-            } else {
+
+                const numPages = Math.ceil(updatedHelmets.length / itemsPerPage);
+                if (currentPage > numPages) {
+                    setCurrentPage(numPages);
+                }
+            }
+            else {
                 throw new Error('Failed to delete helmet');
             }
         } catch (error) {
@@ -79,9 +85,9 @@ const Helmets: React.FC = () => {
     // This slice extracts items from index 0(inclusive) to 4(exclusive) from the helmets array.
     //         So, currentItems now contains the first 4 items from the helmets array.
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = helmets.slice(indexOfFirstItem, indexOfLastItem);
+    const indexOfLastItem = currentPage * itemsPerPage; //8 if page is 2
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage; //8-4 = 4
+    const currentItems = helmets.slice(indexOfFirstItem, indexOfLastItem); //
 
     if (loading) {
         return <CircularProgress style={{ position: 'absolute', top: '50%', left: '50%' }} />;
@@ -95,13 +101,14 @@ const Helmets: React.FC = () => {
             <Grid style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '21px', marginBottom: "20px", alignItems: "center" }}>
                 {currentItems.map((helmet, index) => (
                     <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card sx={{ maxWidth: 345 }}>
+                        <Card sx={{ Width: 345, height: 480 }}>
                             <CardMedia
                                 component="img"
-                                height="240"
+                                height="280"
                                 image={helmet.image}
                                 alt="helmetImage"
                             />
+                            {/* <img src="/helmet1.jpg" alt="" /> */}
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div" align="center">
                                     {helmet.name}

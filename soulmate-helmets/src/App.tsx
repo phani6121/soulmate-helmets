@@ -15,6 +15,7 @@ import Addhelmets from './components/Pages/Addhelmets';
 import Purchase from './components/Pages/Purchase';
 import Addaccessories from './components/Pages/Addaccessories';
 import ForgotPassword from './components/Pages/ForgotPassword';
+import Contact from './components/Pages/Contact';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const App: React.FC = () => {
           <Route path='/purchase' element={<Purchase />} />
           <Route path='/addaccessories' element={<Addaccessories />} />
           <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/contact' element={<Contact />} />
         </Routes>
       </section>
     </div>
