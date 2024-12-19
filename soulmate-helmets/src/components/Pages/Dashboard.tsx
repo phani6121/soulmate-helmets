@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Grid } from '@mui/material';
+import { Typography, Grid, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../Layout/Footer';
 
@@ -97,10 +97,23 @@ const Dashboard: React.FC = () => {
     }
 
     return (
-        <div style={{ backgroundColor: "#0a5eb9", textAlign: "center", color: "white" }}>
-            <Grid style={{ marginBottom: "22vh" }}>
-                <Typography variant="h4" gutterBottom>Accounts Information</Typography>
-                <Grid container spacing={2}>
+        <div>
+            <Box
+                sx={{
+                    backgroundColor: "#FFFAFA",
+                    color: "black",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    minHeight: '50vh', // Ensure the content takes up the full height of the page
+                    paddingBottom: '60px', // Ensure space for the footer
+                }}
+            >
+                <Grid container spacing={2} sx={{ textAlign: 'center', maxWidth: 800 }}>
+                    <Grid item xs={12}>
+                        <Typography variant="h4" gutterBottom>Accounts Information</Typography>
+                    </Grid>
                     <Grid item xs={12}>
                         <Typography variant="body1">
                             <strong>Total Collection:</strong> {totalCollection.toLocaleString()} Rupees
@@ -123,10 +136,13 @@ const Dashboard: React.FC = () => {
                         </Typography>
                     </Grid>
                 </Grid>
-            </Grid>
+
+            </Box>
             <Footer />
         </div>
     );
 };
 
 export default Dashboard;
+
+

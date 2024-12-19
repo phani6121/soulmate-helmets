@@ -15,9 +15,9 @@ const Navbar: React.FC = () => {
         if (username === "" || username === null) {
             navigate("/login");
         }
-    });
+    }, [navigate]);
 
-    //when i click button some other page to helmets or accessories page that style indicates dashboard but use shows correct so i can use useEffect
+    // When the location pathname changes, update the selected tab
     useEffect(() => {
         const path = location.pathname;
         if (path === '/') {
@@ -39,11 +39,17 @@ const Navbar: React.FC = () => {
     const isAccessoriesPage = location.pathname === '/accessories';
 
     return (
-        <AppBar sx={{ background: "#0952a0" }}>
+        <AppBar sx={{ background: "#87CEFA" }}>
             <Toolbar id="back-to-top-anchor">
-                <Typography color={"goldenrod"} variant='h6'>SOULMATE HELMETS</Typography>
+                {/* Logo from the public folder */}
+                <img src="/logo image1.jpg" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
+
+                <Typography color={"goldenrod"} variant='h6'>
+                    HELMETS
+                </Typography>
+
                 <Tabs
-                    sx={{ marginRight: "auto", marginLeft: "10px" }}
+                    sx={{ marginRight: "auto", marginLeft: "40px",color:"black" }}
                     indicatorColor="secondary"
                     textColor="inherit"
                     value={value}

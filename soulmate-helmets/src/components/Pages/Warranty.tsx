@@ -14,7 +14,7 @@ const Warranty: React.FC = () => {
         }
     });
     return (
-        <div style={{ marginTop: '50px', backgroundColor: "#0a5eb9", color: "white" }}>
+        <div style={{ marginTop: '50px', backgroundColor: "#FFFAFA", color: "black" }}>
             <Grid style={{ padding: "0px 120px" }}>
                 <Typography style={{ textAlign: "center" }} variant="h4" gutterBottom>
                     Soulmate Helmets Warranty Information

@@ -18,40 +18,34 @@ const Addaccessories: React.FC = () => {
     const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         setAccessoriesData({ ...accessoriesData, [event.target.name]: event.target.value });
 
-        if (event.target.name === "image")
-            handleFileInputChange(event)
+        if (event.target.name === "image") handleFileInputChange(event);
     };
 
     const isValidate = () => {
         let isProceed = true;
 
-        let errorMessage = "Please upload the "
+        let errorMessage = "Please upload the ";
 
         if (name === null || name === "") {
-            isProceed = false
-            errorMessage += " Name "
+            isProceed = false;
+            errorMessage += " Name ";
         }
         if (price === null || price === "") {
-            isProceed = false
-            errorMessage += "Price "
+            isProceed = false;
+            errorMessage += "Price ";
         }
         if (image === null || image === "") {
-            isProceed = false
-            errorMessage += "Image "
+            isProceed = false;
+            errorMessage += "Image ";
         }
         if (!isProceed) {
-            toast.warning(errorMessage)
-
-        } else
-            if (/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/.test(accessoriesData.price)
-            ) {
-
-            } else {
-                isProceed = false
-                toast.warning("Please enter valid price")
-            }
+            toast.warning(errorMessage);
+        } else if (!/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/.test(accessoriesData.price)) {
+            isProceed = false;
+            toast.warning("Please enter valid price");
+        }
         return isProceed;
-    }
+    };
 
     const handleFileInputChange = (e: any) => {
         const file = e.target.files[0];
@@ -67,7 +61,6 @@ const Addaccessories: React.FC = () => {
     };
 
     const uploadHandler = async () => {
-
         if (isValidate()) {
             try {
                 const accessoriesData = { id: name, name, price, image: base64Image };
@@ -77,7 +70,8 @@ const Addaccessories: React.FC = () => {
                     body: JSON.stringify(accessoriesData),
                 });
                 if (response.ok) {
-                    toast.success('accessories added successfully');
+                    toast.success('Accessories added successfully');
+                    navigate('/accessories'); // Navigate to accessories page after successful upload
                 } else {
                     throw new Error('Failed to add accessories');
                 }
@@ -127,15 +121,6 @@ const Addaccessories: React.FC = () => {
                     variant="contained"
                 >
                     UPLOAD
-                </Button>
-                <Button
-                    onClick={() => {
-                        navigate("/accessories")
-                    }}
-                    sx={{ width: '20%', marginTop: '15px' }}
-                    variant="contained"
-                >
-                    BACK TO ACCESSORIES
                 </Button>
             </Grid>
         </div>

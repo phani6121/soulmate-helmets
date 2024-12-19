@@ -17,7 +17,7 @@ const About: React.FC = () => {
         }
     }, [navigate]);
     return (
-        <div style={{ marginTop: '50px', backgroundColor: "#0a5eb9", textAlign: "center", color: "white" }}>
+        <div style={{ marginTop: '50px', backgroundColor: "#FFFAFA", textAlign: "center", color: "black" }}>
             <Grid style={{ padding: "0px 220px" }}>
                 <Typography variant="h4" gutterBottom>
                     OUR STORY

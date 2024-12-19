@@ -3,6 +3,7 @@ import { TextField, Typography, Grid, Button } from '@mui/material';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
+
 const Addhelmets: React.FC = () => {
     const navigate = useNavigate();
     const [base64Image, setBase64Image] = useState('');
@@ -77,6 +78,7 @@ const Addhelmets: React.FC = () => {
                 });
                 if (response.ok) {
                     toast.success('Helmet added successfully');
+                    navigate('/helmets');
                 } else {
                     throw new Error('Failed to add helmet');
                 }
@@ -126,15 +128,6 @@ const Addhelmets: React.FC = () => {
                     variant="contained"
                 >
                     UPLOAD
-                </Button>
-                <Button
-                    onClick={() => {
-                        navigate("/helmets")
-                    }}
-                    sx={{ width: '20%', marginTop: '15px' }}
-                    variant="contained"
-                >
-                    BACK TO HELMETS
                 </Button>
             </Grid>
         </div>

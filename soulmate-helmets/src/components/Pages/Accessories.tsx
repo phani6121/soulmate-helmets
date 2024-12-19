@@ -79,7 +79,7 @@ const Accessories: React.FC = () => {
     }
 
     return (
-        <div style={{ backgroundColor: "#0a5eb9", padding: '20px' }}>
+        <div style={{ backgroundColor: "#FFFAFA", padding: '20px' }}>
             <Typography variant="h3" style={{ textAlign: 'center', fontFamily: 'inherit', marginBottom: '20px' }}>
                 PRODUCTS
             </Typography>
