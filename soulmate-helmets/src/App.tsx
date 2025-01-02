@@ -22,7 +22,7 @@ const App: React.FC = () => {
   const isLoginOrSignin = location.pathname === '/login' || location.pathname === '/signin' || location.pathname === '/addhelmets' || location.pathname === '/purchase' || location.pathname === '/addaccessories' || location.pathname === '/forgotPassword';
 
   return (
-    <div className="App" style={{ marginTop: "65px", padding: "0px" }}>
+    <div className="App" style={{ marginTop: "100px", padding: "0px" }}>
       <ToastContainer />
       {/* Render Navbar for all pages except Login and Signin */}
       {!isLoginOrSignin && <Navbar />}

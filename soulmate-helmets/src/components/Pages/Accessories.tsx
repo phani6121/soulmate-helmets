@@ -12,7 +12,7 @@ const Accessories: React.FC = () => {
     const [accessories, setAccessories] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true); // State for loading indicator
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [itemsPerPage] = useState<number>(4); // Number of items to display per page
+    const [itemsPerPage] = useState<number>(8); // Number of items to display per page
 
     useEffect(() => {
         let username = sessionStorage.getItem("username");
@@ -103,8 +103,8 @@ const Accessories: React.FC = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions style={{ justifyContent: 'center' }}>
-                                <Button onClick={() => navigate("/purchase")} variant="contained" size="small">BUY NOW</Button>
-                                <Button onClick={() => deleteAccessories(accessories.id, indexOfFirstItem + index)} variant="contained" size="small">DELETE</Button>
+                                <Button sx={{ background: "rgba(0,0,0,0.5)" }} onClick={() => navigate("/purchase")} variant="contained" size="small">BUY NOW</Button>
+                                <Button sx={{ background: "rgba(0,0,0,0.5)" }} onClick={() => deleteAccessories(accessories.id, indexOfFirstItem + index)} variant="contained" size="small">DELETE</Button>
                             </CardActions>
                         </Card>
                     </Grid>

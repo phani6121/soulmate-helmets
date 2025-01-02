@@ -3,7 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Tab, Tabs, Typography } from "@mui/material";
+import { Tab, Tabs } from "@mui/material";
 
 const Navbar: React.FC = () => {
     const [value, setValue] = useState(0);
@@ -17,7 +17,6 @@ const Navbar: React.FC = () => {
         }
     }, [navigate]);
 
-    // When the location pathname changes, update the selected tab
     useEffect(() => {
         const path = location.pathname;
         if (path === '/') {
@@ -39,14 +38,12 @@ const Navbar: React.FC = () => {
     const isAccessoriesPage = location.pathname === '/accessories';
 
     return (
-        <AppBar sx={{ background: "#87CEFA" }}>
+        <AppBar style={{backgroundColor:"white"}} >
             <Toolbar id="back-to-top-anchor">
-                {/* Logo from the public folder */}
-                <img src="/logo image1.jpg" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
-
-                <Typography color={"goldenrod"} variant='h6'>
-                    HELMETS
-                </Typography>
+                {/* Wrap logo in a Link to navigate to the dashboard */}
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <img src="/logo image4.png" alt="Logo" style={{ height: '100px', marginRight: '15px' }} />
+                </Link>
 
                 <Tabs
                     sx={{ marginRight: "auto", marginLeft: "40px",color:"black" }}
@@ -55,24 +52,114 @@ const Navbar: React.FC = () => {
                     value={value}
                     onChange={(e, newValue) => setValue(newValue)}
                 >
-                    <Tab label="DashBoard" component={Link} to="/" />
-                    <Tab label="Helmets" component={Link} to="/helmets" />
-                    <Tab label="Accessories" component={Link} to="/accessories" />
-                    <Tab label="About Us" component={Link} to="/about" />
-                    <Tab label="Warranty" component={Link} to="/warranty" />
-                    <Tab label="Contact-Us" component={Link} to="/contact" />
+                    <Tab
+                        label="DashBoard"
+                        component={Link}
+                        to="/"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                 fontSize: "15px"
+                            },
+                        }}
+                    />
+                    <Tab
+                        label="Helmets"
+                        component={Link}
+                        to="/helmets"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                fontSize: "15px"
+                            },
+                        }}
+                    />
+                    <Tab
+                        label="Accessories"
+                        component={Link}
+                        to="/accessories"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                fontSize: "15px"
+                            },
+                        }}
+                    />
+                    <Tab
+                        label="About Us"
+                        component={Link}
+                        to="/about"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                fontSize: "15px"
+                            },
+                        }}
+                    />
+                    <Tab
+                        label="Warranty"
+                        component={Link}
+                        to="/warranty"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                fontSize: "15px"
+                            },
+                        }}
+                    />
+                    <Tab
+                        label="Contact-Us"
+                        component={Link}
+                        to="/contact"
+                        sx={{
+                            '&:hover': {
+                                color: 'orange',
+                                fontSize: "15px"
+                            },
+                        }}
+                    />
                 </Tabs>
+
                 {isHelmetsPage && (
-                    <Button onClick={() => { navigate("/addhelmets"); }} style={{ marginRight: "15px" }} variant="contained">
+                    <Button
+                        sx={{
+                            background: "rgba(0,0,0,0.5)",
+                            '&:hover': {
+                                backgroundColor: 'orange',
+                            },
+                        }}
+                        onClick={() => { navigate("/addhelmets"); }}
+                        style={{ marginRight: "15px" }}
+                        variant="contained"
+                    >
                         ADD HELMET
                     </Button>
                 )}
                 {isAccessoriesPage && (
-                    <Button onClick={() => { navigate("/addaccessories"); }} style={{ marginRight: "15px" }} variant="contained">
+                    <Button
+                        sx={{
+                            background: "rgba(0,0,0,0.5)",
+                            '&:hover': {
+                                backgroundColor: 'orange',
+                            },
+                        }}
+                        onClick={() => { navigate("/addaccessories"); }}
+                        style={{ marginRight: "15px" }}
+                        variant="contained"
+                    >
                         ADD ACCESSORIES
                     </Button>
                 )}
-                <Button onClick={() => { navigate("/login"); }} variant="contained">
+                <Button
+                    sx={{
+                        background: "rgba(0,0,0,0.5)",
+                        '&:hover': {
+                            backgroundColor: 'orange',
+                        },
+                    }}
+                    onClick={() => { navigate("/login"); }}
+                    variant="contained"
+                >
                     Logout
                 </Button>
             </Toolbar>

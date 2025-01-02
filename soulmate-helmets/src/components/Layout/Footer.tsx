@@ -3,7 +3,9 @@ import { Grid, Typography, IconButton, Link } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import GoogleIcon from '@mui/icons-material/Google';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { useNavigate } from 'react-router-dom';
 
 // Footer component
@@ -17,75 +19,97 @@ const Footer: React.FC = () => {
         }
     }, [navigate]);
 
+    // Handle hover effect on text links
+    const handleHover = (e: React.MouseEvent<HTMLElement>, color: string) => {
+        e.currentTarget.style.color = color;
+    };
+
     return (
-        <div>
-            <div style={{ textAlign: "center", fontFamily: 'inherit', backgroundColor: "#FAF0E6", height: "50vh" }} >
-                <Grid style={{ display: "flex", justifyContent: "space-evenly", color: "black" }}>
-                    <Grid style={{ marginBottom: "50px" }}>
-                        <Typography variant="h4" sx={{ margin: "15px" }}>
-                            Product
-                        </Typography>
-                        <Typography onClick={() => { navigate("/helmets") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                            Helmets
-                        </Typography>
-                        <Typography onClick={() => { navigate("/accessories") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                            Accessories
-                        </Typography>
-                    </Grid>
-                    <Grid>
-                        <Typography variant="h4" sx={{ margin: "15px" }}>
-                            Service
-                        </Typography>
-                        <Typography component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                            Helmets Repair
-                        </Typography>
-                        <Typography component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                            Accessories Installation
-                        </Typography>
-                        <Typography component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                            Bike Modification
-                        </Typography>
-                    </Grid>
-                    <Grid>
-                        <Typography variant="h4" sx={{ margin: "15px" }}>
-                            About
-                        </Typography>
-                        <div>
-                            <Typography onClick={() => { navigate("/about") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                                About Us
-                            </Typography>
-                            <Typography onClick={() => { navigate("/contact") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
-                                Contact Us
-                            </Typography>
-                            <Typography onClick={() => { navigate("/warranty") }} component={Link} variant="h6" sx={{ display: 'block', margin: "15px", color: "black", textDecoration: "none", cursor: "pointer" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", backgroundColor: "#FAF0E6",borderRadius:"15px" }}>
+            {/* Navigation Links */}
+            <Grid container justifyContent="center" style={{ marginBottom: "30px" }}>
+                <Grid item xs={12} md={6}>
+                    <ul style={{ display: "flex", justifyContent: "space-evenly", listStyleType: "none", borderBottom: "2px solid orange", paddingBottom: "20px", width: "100%" }}>
+                        <li>
+                            <Link href="/about"
+                                style={{ textDecoration: "none", fontSize: "20px", color: "#000", transition: "color 0.3s", marginRight:"40px" }}
+                                onMouseOver={(e) => handleHover(e, "orange")}
+                                onMouseOut={(e) => handleHover(e, "#000")}>
+                                About
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/contact"
+                                style={{ textDecoration: "none", fontSize: "20px", color: "#000", transition: "color 0.3s", marginRight: "40px" }}
+                                onMouseOver={(e) => handleHover(e, "orange")}
+                                onMouseOut={(e) => handleHover(e, "#000")}>
+                                Contact
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/helmets"
+                                style={{ textDecoration: "none", fontSize: "20px", color: "#000", transition: "color 0.3s", marginRight: "40px" }}
+                                onMouseOver={(e) => handleHover(e, "orange")}
+                                onMouseOut={(e) => handleHover(e, "#000")}>
+                                Products
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/warranty"
+                                style={{ textDecoration: "none", fontSize: "20px", color: "#000", transition: "color 0.3s" }}
+                                onMouseOver={(e) => handleHover(e, "orange")}
+                                onMouseOut={(e) => handleHover(e, "#000")}>
                                 Warranty
-                            </Typography>
-                        </div>
-                    </Grid>
+                            </Link>
+                        </li>
+                    </ul>
                 </Grid>
+            </Grid>
 
-                {/* Social Media Icons */}
-                <Grid>
-                    <IconButton sx={{ color: "black" }} aria-label="Facebook">
-                        <FacebookIcon />
-                    </IconButton>
-                    <IconButton sx={{ color: "black" }} aria-label="Twitter">
-                        <TwitterIcon />
-                    </IconButton>
-                    <IconButton sx={{ color: "black" }} aria-label="Instagram">
-                        <InstagramIcon />
-                    </IconButton>
-                    <IconButton sx={{ color: "black" }} aria-label="YouTube">
-                        <YouTubeIcon />
-                    </IconButton>
-                </Grid>
+            {/* Tagline */}
+            <Typography variant="h4" style={{ letterSpacing: "2px", fontSize: "30px", padding: "0 150px" }}>
+                TASTE THE SPEED WITH SAFETY
+            </Typography>
 
-                {/* Copyright Section */}
-                <div style={{ marginTop: "30px", backgroundColor: "#AFEEEE", width: "100%", height: "60px", textAlign: "center", paddingTop: "30px" }}>
-                    <Typography variant="body1" color="black">
-                        © Your Website 2023. All Rights Reserved.
-                    </Typography>
-                </div>
+            {/* Social Media Icons */}
+            <div style={{ display: "flex", justifyContent: "center", gap: "30px", margin: "30px 0" }}>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <FacebookIcon />
+                </IconButton>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <TwitterIcon />
+                </IconButton>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <InstagramIcon />
+                </IconButton>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <GoogleIcon />
+                </IconButton>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <LinkedInIcon />
+                </IconButton>
+                <IconButton style={{ color: "#0093DD", transition: "color 0.3s" }}
+                    onMouseOver={(e) => handleHover(e, "orange")}
+                    onMouseOut={(e) => handleHover(e, "#0093DD")}>
+                    <GitHubIcon />
+                </IconButton>
+            </div>
+
+            {/* Footer Bottom */}
+            <div style={{ marginTop: "30px", backgroundColor: "#4169E1", width: "100%", padding: "10px 0" }}>
+                <Typography variant="body2" style={{ color: "#fff" }}>
+                    © Your Website 2023. All Rights Reserved.
+                </Typography>
             </div>
         </div>
     );

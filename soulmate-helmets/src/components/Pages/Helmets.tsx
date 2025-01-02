@@ -11,7 +11,7 @@ const Helmets: React.FC = () => {
     const [helmets, setHelmets] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true); // State for loading indicator
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [itemsPerPage] = useState<number>(4); // Number of items to display per page
+    const [itemsPerPage] = useState<number>(8); // Number of items to display per page
 
     useEffect(() => {
         let username = sessionStorage.getItem("username");
@@ -119,8 +119,8 @@ const Helmets: React.FC = () => {
                                 </Typography>
                             </CardContent>
                             <CardActions style={{ justifyContent: 'center' }}>
-                                <Button onClick={() => navigate("/purchase")} variant="contained" size="small">BUY NOW</Button>
-                                <Button onClick={() => deleteHelmet(helmet.id, indexOfFirstItem + index)} variant="contained" size="small">DELETE</Button>
+                                <Button sx={{ background: "rgba(0,0,0,0.5)" }} onClick={() => navigate("/purchase")} variant="contained" size="small">BUY NOW</Button>
+                                <Button sx={{ background: "rgba(0,0,0,0.5)" }} onClick={() => deleteHelmet(helmet.id, indexOfFirstItem + index)} variant="contained" size="small">DELETE</Button>
                             </CardActions>
                         </Card>
                     </Grid>
